@@ -1,16 +1,11 @@
-# 1. Jib Python Image sghira
-FROM python:3.10-slim
+from flask import Flask
 
-# 2. Kriyye dossier dyal l-khedma
-WORKDIR /app
+app = Flask(__name__)
 
-# 3. Copier l-fichiers
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+@app.route('/')
+def home():
+    return "<h1>🚀 Application Python Khddama b Docker + Jenkins!</h1>"
 
-COPY app.py .
-
-# 4. Fth Port 5000 w khddem l-App
-EXPOSE 5000
-CMD ["python", "app.py"]
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
 
